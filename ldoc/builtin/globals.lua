@@ -5,6 +5,7 @@ local globals = {}
 local lua52 = _VERSION:match '5.2'
 local lua53 = _VERSION:match '5.3'
 local lua54 = _VERSION:match '5.4'
+local lua55 = _VERSION:match '5.5'
 
 
 globals.functions = {
@@ -35,7 +36,7 @@ globals.functions = {
 }
 local functions = globals.functions
 
-if lua54 then
+if lua54 or lua55 then
    functions.warn = true
    functions.rawlen = true
 elseif lua52 or lua53 then
@@ -53,7 +54,19 @@ function globals.set_manual_url(url)
    fun_ref = manual..'pdf-'
 end
 
-if lua54 then
+if lua55 then
+   globals.tables = {
+      io = '6.9',
+      package = '6.4',
+      math = '6.8',
+      os = '6.10',
+      string = '6.5',
+      table = '6.7',
+      coroutine = '6.3',
+      debug = '6.11'
+    }
+   globals.set_manual_url 'https://www.lua.org/manual/5.5/manual.html'
+elseif lua54 then
    globals.tables = {
       io = '6.8',
       package = '6.3',
